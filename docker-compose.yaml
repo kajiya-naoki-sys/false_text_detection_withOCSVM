@@ -1,0 +1,16 @@
+services:
+  synth_misinfo:
+    build: .
+    container_name: synth_misinfo
+    volumes:
+      - ./outputs:/app/outputs
+    entrypoint: ["python", "/app/date/makeText.py"]
+    command: ["--out", "outputs/synthetic_misinfo.csv", "--n", "2000", "--seed", "123"]
+
+  train_lgbm:
+    build: .
+    container_name: train_lgbm
+    volumes:
+      - ./outputs:/app/outputs
+    entrypoint: ["python", "/app/src/main.py"]
+    command: ["--csv", "outputs/synthetic_misinfo.csv"]
