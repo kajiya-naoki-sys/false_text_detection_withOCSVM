@@ -4,13 +4,27 @@ services:
     container_name: synth_misinfo
     volumes:
       - ./outputs:/app/outputs
+      - ./date:/app/date
+      - ./src:/app/src
     entrypoint: ["python", "/app/date/makeText.py"]
-    command: ["--out", "outputs/synthetic_misinfo.csv", "--n", "2000", "--seed", "123"]
+    command: ["--out", "outputs/synthetic_misinfo.csv", "--n", "2000", "--seed", "123", "--difficulty", "hard"]
 
   train_lgbm:
     build: .
     container_name: train_lgbm
     volumes:
       - ./outputs:/app/outputs
+      - ./date:/app/date
+      - ./src:/app/src
     entrypoint: ["python", "/app/src/main.py"]
     command: ["--csv", "outputs/synthetic_misinfo.csv"]
+
+  train_ocsvm:
+    build: .
+    container_name: train_ocsvm
+    volumes:
+      - ./outputs:/app/outputs
+      - ./date:/app/date
+      - ./src:/app/src
+    entrypoint: ["python", "/app/src/ocsvm_train.py"]
+    command: ["--csv", "outputs/synthetic_misinfo.csv", "--normal_label", "0", "--mode", "linear_sgd", "--nu", "0.05"]
