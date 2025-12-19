@@ -7,7 +7,7 @@ services:
       - ./date:/app/date
       - ./src:/app/src
     entrypoint: ["python", "/app/date/makeText.py"]
-    command: ["--out", "outputs/synthetic_misinfo.csv", "--n", "2000", "--seed", "123", "--difficulty", "hard"]
+    command: ["--out", "outputs/synthetic_misinfo.csv", "--n", "2000", "--seed", "123", "--difficulty", "easy"]
 
   train_lgbm:
     build: .
