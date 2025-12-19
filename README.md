@@ -2,8 +2,9 @@
 ```bash
 docker compose run --rm synth_misinfo
 ```
-- 生成するデータセットの種類を変更したい場合は，`docker-compose.yaml`の`synth_misinfo`内にある`command`の第８引数を{`easy`, `medium`, `hard`}のいずれかにする．
-- あらかじめルートディレクトリに`/outoputs`を作成しておく必要がある．
+- 生成するデータセットの種類を変更したい場合は，`docker-compose.yaml`の`synth_misinfo`内にある`command`の第８引数を{`easy`, `medium`, `hard`}のいずれかに設定してください．
+- あらかじめルートディレクトリに`/outoputs`を作成しておく必要があります．
+*実行にはDockerのインストールが必須です．
 
 # OCSVMの実行
 ```bash
